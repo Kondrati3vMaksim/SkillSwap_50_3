@@ -1,145 +1,94 @@
-# SkillSwap — шаблон проекта
+# SkillSwap — платформа обмена навыками
 
-Платформа обмена навыками.
+Командный учебный проект Яндекс Практикума на React и TypeScript. Пользователи могут находить людей для обмена навыками, просматривать предложения и взаимодействовать с интерфейсом платформы.
 
----
+Этот репозиторий — мой fork командного проекта. **Автор портфолио: Максим Кондратьев**; приложение создано командой, ниже описан мой вклад.
 
-## Быстрый старт
+[Командный репозиторий](https://github.com/Groulbands/SkillSwap_50_3/tree/develop) · [Мои коммиты](https://github.com/Groulbands/SkillSwap_50_3/commits/develop/?author=Kondrati3vMaksim)
+
+## Мой вклад
+
+- Разрабатывал UI-компоненты `Button`, `CheckboxCircle`, `CheckboxSquare`, `Logo` и их стили.
+- Работал над `UserAvatar` и `UserCard`: отображение данных пользователя, навыков и элементов взаимодействия.
+- Участвовал в разработке компонентов шапки приложения и уведомлений `Notification` / `NotificationButton`.
+- Описывал параметры компонентов через TypeScript, работал с props, обработчиками событий и локальным состоянием.
+- Добавлял Storybook stories для демонстрации вариантов компонентов; исправлял замечания по своим изменениям в командной разработке.
+
+Мой вклад подтверждается историей коммитов. Разработка всего приложения, общая архитектура и вся работа с Redux не являются моей единоличной реализацией.
+
+## Примеры кода
+
+| Компонент | Что можно посмотреть |
+| --- | --- |
+| [Button](src/shared/ui/Button/Button.tsx) | Типизированные параметры, варианты оформления, передача нативных атрибутов кнопки |
+| [CheckboxSquare](src/shared/ui/Checkbox/CheckboxSquare/CheckboxSquare.tsx) | Checkbox, состояние через props, варианты значка |
+| [UserCard](src/entities/user/ui/UserCard/UserCard.tsx) | Композиция компонентов, вывод навыков, действия карточки |
+| [Notification](src/features/notification/ui/Notification/Notification.tsx) | Отображение нового/просмотренного уведомления и обработчик действия |
+
+## Технологии
+
+**В моей работе:** React, TypeScript, SCSS / CSS Modules, Storybook, Git, GitHub, Figma.
+
+**В приложении:** также Redux Toolkit, React Router, Vite, Vitest, React Hook Form и другие зависимости из [package.json](package.json). Перечень стека приложения не означает, что все его части разработаны мной.
+
+## Данные и ограничения
+
+Учебная версия работает с JSON-моками в `public/db/` и локальными данными браузера. Это не интеграция с production backend. Сервер и секретные ключи для локального запуска не требуются.
+
+## Результат и выводы
+
+Мои компоненты включены в командный интерфейс платформы. Получил практику переиспользования компонентов, типизации props, согласования интерфейсов между участниками и работы с обратной связью по коду. Storybook позволяет отдельно просматривать варианты UI.
+
+## Локальный запуск
+
+Требования: Git, Node.js 22.12+ и npm, современный браузер. Устанавливайте зависимости из зафиксированного `package-lock.json`.
 
 ```bash
-npm install
+git clone --branch develop --single-branch https://github.com/Kondrati3vMaksim/SkillSwap_50_3.git
+cd SkillSwap_50_3
+npm ci
 npm run dev
 ```
 
-Открой [http://localhost:5173](http://localhost:5173)
+Откройте адрес, показанный Vite в терминале; по умолчанию [http://localhost:5173](http://localhost:5173).
 
----
+### Storybook
 
-## State management
-
-Проект использует **Redux Toolkit**. Store настроен в `src/store/index.ts`.
-
-Для работы со store используй типизированные хуки из `src/store/hooks.ts` — `useAppDispatch` и `useAppSelector` вместо оригинальных из react-redux.
-
----
-
-## Структура проекта
-
-```
-src/
-├── api/                  # fetch-функции для загрузки JSON-моков
-├── app/
-│   ├── providers/        # StoreProvider, RouterProvider
-│   └── styles/           # global.css с CSS-переменными
-├── entities/             # Доменные модели: Skill, User, Request
-│   ├── skill/
-│   ├── user/
-│   └── request/
-├── features/             # Фичи: auth, skills, favorites, requests
-├── pages/                # Страницы приложения
-├── shared/
-│   ├── hooks/            # useDebounce, useLocalStorage
-│   ├── lib/              # constants, helpers
-│   ├── types/            # общие TypeScript-типы
-│   └── ui/               # атомарные компоненты
-├── store/                # Redux store и типизированные хуки
-└── widgets/              # Составные блоки: Header, SkillCard, FiltersBar
-
-public/
-└── db/
-    ├── skills.json       # Добавь сюда моки навыков
-    └── users.json        # Добавь сюда моки пользователей
-```
-
----
-
-## Моки данных
-
-Файлы `public/db/skills.json` и `public/db/users.json` **пустые** — студенты заполняют сами.
-
-Структура объектов описана в `src/shared/types/index.ts`.
-
----
-
-## Доступные скрипты
-
-| Скрипт | Что делает |
-|--------|------------|
-| `npm run dev` | Запуск dev-сервера |
-| `npm run build` | Сборка для продакшена |
-| `npm run lint` | Проверка ESLint + Stylelint |
-| `npm run lint:fix` | Автоисправление lint-ошибок |
-| `npm run format` | Форматирование через Prettier |
-| `npm run test` | Запуск тестов |
-| `npm run test:watch` | Тесты в watch-режиме |
-| `npm run test:coverage` | Покрытие (цель ≥ 70%) |
-
----
-
-## Роутинг
-
-Маршруты объявлены в `src/shared/lib/constants.ts` → `ROUTES`.
-
-Lazy-загрузка уже настроена в `src/app/providers/RouterProvider.tsx`.
-
-Для защищённых маршрутов добавь компонент `PrivateRoute` в `src/features/auth/ui/`.
-
----
-
-## Переменные окружения
-
-Создай `.env.local` для локальных настроек (в `.gitignore` уже исключён):
-
-```
-VITE_APP_TITLE=SkillSwap
-```
-
-Доступ в коде: `import.meta.env.VITE_APP_TITLE`
-
----
-
-## Git-процесс
-
-```
-main        ← только стабильный код, не трогаем напрямую
-└── develop ← основная ветка разработки, PR только сюда
-    └── feature/catalog-filters   ← твоя задача
-        └── → PR → code review → merge в develop
-```
-
-Перед началом каждой задачи:
 ```bash
-git checkout develop
-git pull
-git checkout -b feature/название-задачи
+npm run storybook
 ```
 
-После завершения:
-```bash
-git push -u origin feature/название-задачи
-# открываешь PR из своей ветки → в develop
-```
+По умолчанию: [http://localhost:6006](http://localhost:6006).
 
-Ветки называй: `feature/`, `fix/`, `refactor/`, `docs/`, `chore/`
+### Сборка и проверки
 
-Коммиты по [Conventional Commits](https://www.conventionalcommits.org/ru/):
-```
-feat: добавить фильтр по категориям
-fix: исправить отображение карточки на мобильном
-refactor: вынести логику избранного в хук
-```
+| Команда | Назначение |
+| --- | --- |
+| `npm run build` | Проверка TypeScript и сборка Vite |
+| `npm run preview` | Просмотр собранного приложения |
+| `npm run test` | Запуск Vitest |
+| `npm run test:coverage` | Отчёт о покрытии |
+| `npm run lint` | ESLint с автоматическим исправлением файлов |
+| `npm run stylelint` | Проверка SCSS |
+| `npm run format` | Форматирование файлов через Prettier |
 
-PR — не больше ~200 строк изменений. Вливает только тимлид или его заместитель. `--force` и `merge --no-ff` в `develop` запрещены.
+## Структура
 
----
+| Каталог | Назначение |
+| --- | --- |
+| `src/app/` | Провайдеры и глобальные стили |
+| `src/entities/` | Модели и UI сущностей |
+| `src/features/` | Пользовательские функции |
+| `src/pages/` | Страницы |
+| `src/shared/` | Общие типы, утилиты, UI |
+| `src/store/` | Redux store и типизированные хуки |
+| `src/widgets/` | Составные блоки интерфейса |
+| `public/db/` | JSON-моки |
 
-## CI
+## Дальнейшее развитие
 
-GitHub Actions запускается на каждый push и PR:
-- `npm run lint`
-- `tsc --noEmit`
-- `npm run test`
-- `npm run build`
+Углубить понимание управляемых компонентов и потока данных React, проверить пограничные состояния карточки пользователя и расширить проверки UI. Эти пункты — планы, а не уже выполненные задачи.
 
-Если CI красный — PR не мержится.
+Исходная командная история Git сохранена. Документация портфолио обновляется в личном fork.
 
+[Telegram](https://t.me/Phoenixbelike)
